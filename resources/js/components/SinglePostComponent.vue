@@ -1,5 +1,5 @@
 <template>
-    <div>это single-post-component</div>
+    <div>эта строка - single-post-component</div>
 </template>
 
 <script>
