@@ -2,6 +2,7 @@
     <div><SinglePostComponent /></div>
     <div>228228228228228228228228228228228228228228228</div>
     <h1>{{ name }}</h1>
+    <h1>{{ job() }}</h1>
     <button @click="sayHello">Say Hello</button>
 </template>
 
@@ -20,5 +21,9 @@ let name = ref("Sergey");
 
 function sayHello() {
     alert("Hello, " + name.value);
+}
+
+function job() {
+    return name.value + " работает программистом";
 }
 </script>
