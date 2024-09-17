@@ -2,6 +2,7 @@
     <div><SinglePostComponent /></div>
     <div>228228228228228228228228228228228228228228228</div>
     <h1>{{ name }}</h1>
+    <button @click="sayHello">Say Hello</button>
 </template>
 
 <script setup>
@@ -16,4 +17,8 @@ export default {
 */
 
 let name = ref("Sergey");
+
+function sayHello() {
+    alert("Hello, " + name.value);
+}
 </script>
