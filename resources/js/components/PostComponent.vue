@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="person in personAgeLess30" :key="person.name">
+            <tr v-for="person in persons" :key="person.name">
                 <td>{{ person.name }}</td>
                 <td>{{ person.age }}</td>
             </tr>
@@ -19,15 +19,22 @@
 
 <script setup>
 import SinglePostComponent from "./SinglePostComponent.vue";
-import { reactive, ref, computed } from "vue";
+import { reactive, ref, computed, onMounted } from "vue";
 
-let persons = reactive([
-    { name: "Sergey", age: 20 },
-    { name: "Alex", age: 25 },
-    { name: "Vlad", age: 30 },
-]);
+let persons = null;
 
-const personAgeLess30 = computed(() => {
-    return persons.filter((person) => person.age < 30);
+onMounted(() => {
+    getPersons();
 });
+
+function getPersons() {
+    axios
+        .get("/persons")
+        .then((data) => {
+            persons = data.data;
+            console.log(persons);
+        })
+        .catch((error) => {})
+        .finally(() => {});
+}
 </script>
