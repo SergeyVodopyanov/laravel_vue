@@ -1,5 +1,8 @@
 <template>
-    <div><SinglePostComponent /></div>
+    <div class="">
+        <CreateComponent />
+        <SinglePostComponent />
+    </div>
 
     <table class="table">
         <thead>
@@ -19,17 +22,19 @@
 
 <script setup>
 import SinglePostComponent from "./SinglePostComponent.vue";
+import CreateComponent from "./CreateComponent.vue";
 import { reactive, ref, computed, onMounted } from "vue";
 
 let persons = null;
 
+/*
 onMounted(() => {
     getPersons();
 });
 
 function getPersons() {
     axios
-        .get("/persons")
+        .get("/people")
         .then((data) => {
             persons = data.data;
             console.log(persons);
@@ -37,4 +42,5 @@ function getPersons() {
         .catch((error) => {})
         .finally(() => {});
 }
+        */
 </script>
