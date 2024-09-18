@@ -11,5 +11,6 @@ Route::get('/user', function (Request $request) {
 
 Route::group(['namespace' => 'App\Http\Controllers\Person', 'prefix' => 'people'], function () {
     Route::post('/', 'StoreController@__invoke');
+    Route::get('/', 'IndexController@__invoke');
 });
 
