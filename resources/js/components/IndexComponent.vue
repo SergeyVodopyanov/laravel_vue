@@ -6,6 +6,8 @@
                     <th scope="col">#</th>
                     <th scope="col">Имя</th>
                     <th scope="col">Возраст</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
 
@@ -28,6 +30,14 @@
                                 "
                             >
                                 Редактировать
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                href="#"
+                                class="btn btn-danger"
+                                @click.prevent="deletePerson(person.id)"
+                                >Удалить
                             </a>
                         </td>
                     </tr>
@@ -96,6 +106,12 @@ function updatePerson(id) {
             console.log(res);
             getPeople();
         });
+}
+
+function deletePerson(id) {
+    axios.delete(`/api/people/${id}`).then((res) => {
+        getPeople();
+    });
 }
 
 function isEdit(id) {

@@ -13,6 +13,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Person', 'prefix' => 'people'
     Route::post('/', 'StoreController@__invoke');
     Route::get('/', 'IndexController@__invoke');
     Route::patch('/{person}', 'UpdateController@__invoke');
+    Route::delete('/{person}', 'DeleteController@__invoke');
+
 
 });
 
