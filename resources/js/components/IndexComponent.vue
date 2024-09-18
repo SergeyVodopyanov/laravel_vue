@@ -11,7 +11,7 @@
 
             <tbody>
                 <template v-for="person in people" :key="person.id">
-                    <tr>
+                    <tr :class="isEdit(person.id) ? 'd-none' : ''">
                         <th scope="row">{{ person.id }}</th>
                         <td>{{ person.name }}</td>
                         <td>{{ person.age }}</td>
@@ -19,7 +19,13 @@
                             <a
                                 href="#"
                                 class="btn btn-success"
-                                @click.prevent="editPerson(person.id)"
+                                @click.prevent="
+                                    editPerson(
+                                        person.id,
+                                        person.name,
+                                        person.age
+                                    )
+                                "
                             >
                                 Редактировать
                             </a>
@@ -27,14 +33,26 @@
                     </tr>
                     <tr :class="isEdit(person.id) ? '' : 'd-none'">
                         <th scope="row">{{ person.id }}</th>
-                        <td><input type="text" class="form-control" /></td>
-                        <td><input type="number" class="form-control" /></td>
+                        <td>
+                            <input
+                                type="text"
+                                v-model="name"
+                                class="form-control"
+                            />
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                v-model="age"
+                                class="form-control"
+                            />
+                        </td>
 
                         <td>
                             <a
                                 href="#"
                                 class="btn btn-success"
-                                @click.prevent="editPerson(null)"
+                                @click.prevent="updatePerson(person.id)"
                             >
                                 Сохранить
                             </a>
@@ -51,16 +69,33 @@ import axios from "axios";
 import { ref } from "vue";
 
 let people = ref([]);
-let editPersonId = ref(null);
 getPeople();
+
+let editPersonId = ref(null);
+let name = ref(null);
+let age = ref(null);
 
 async function getPeople() {
     const response = await axios.get("/api/people");
     people.value = response.data;
 }
 
-function editPerson(id) {
+function editPerson(id, oldName, oldAge) {
     editPersonId.value = id;
+    name.value = oldName;
+    age.value = oldAge;
+}
+
+function updatePerson(id) {
+    editPersonId.value = null;
+    console.log(name.value, age.value);
+
+    axios
+        .patch(`/api/people/${id}`, { name: name.value, age: age.value })
+        .then((res) => {
+            console.log(res);
+            getPeople();
+        });
 }
 
 function isEdit(id) {
