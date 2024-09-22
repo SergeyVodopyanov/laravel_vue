@@ -1,5 +1,6 @@
 <template>
     <div>
+        <slot></slot>
         <table class="table">
             <thead>
                 <tr>
@@ -76,7 +77,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
+import { ref, defineExpose } from "vue";
 
 let people = ref([]);
 getPeople();
@@ -117,4 +118,12 @@ function deletePerson(id) {
 function isEdit(id) {
     return editPersonId.value === id;
 }
+
+function indexLog() {
+    console.log("это индекс лог");
+}
+
+defineExpose({
+    indexLog,
+});
 </script>
