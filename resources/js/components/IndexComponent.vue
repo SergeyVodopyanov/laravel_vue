@@ -1,6 +1,6 @@
 <template>
     <div>
-        <slot></slot>
+        <!-- <slot></slot> -->
         <table class="table">
             <thead>
                 <tr>
@@ -123,7 +123,10 @@ function indexLog() {
     console.log("это индекс лог");
 }
 
+let number = ref(8);
+
 defineExpose({
     indexLog,
+    number,
 });
 </script>

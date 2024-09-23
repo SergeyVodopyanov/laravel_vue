@@ -13,10 +13,15 @@ import { ref, onMounted } from "vue";
 // Ссылка на компонент IndexComponent
 const indexComponentRef = ref(null);
 
+function parentLog() {
+    console.log("это родительский (PostComponent) лог");
+}
+
 // Вызов функции indexLog при монтировании компонента
 onMounted(() => {
     if (indexComponentRef.value) {
         indexComponentRef.value.indexLog(); // Вызов функции indexLog
     }
+    console.log(indexComponentRef.value.number);
 });
 </script>
