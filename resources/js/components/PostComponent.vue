@@ -1,7 +1,11 @@
 <template>
     <div>
         <CreateComponent />
-        <IndexComponent ref="indexComponentRef" />
+        <IndexComponent
+            :parentVar="newNumber"
+            :parentFunction="handleClick"
+            ref="indexComponentRef"
+        />
     </div>
 </template>
 
@@ -24,4 +28,10 @@ onMounted(() => {
     }
     console.log(indexComponentRef.value.number);
 });
+
+const handleClick = () => {
+    console.log("Кнопка была нажата в родительском компоненте!");
+};
+
+let newNumber = ref(5);
 </script>

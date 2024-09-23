@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!-- <slot></slot> -->
+        <button @click="parentFunction">Нажми меня</button>
         <table class="table">
             <thead>
                 <tr>
@@ -129,4 +129,17 @@ defineExpose({
     indexLog,
     number,
 });
+
+const props = defineProps({
+    parentFunction: {
+        type: Function,
+        required: true,
+    },
+    parentVar: {
+        type: Number,
+        required: true,
+    },
+});
+
+console.log(props.parentVar);
 </script>
