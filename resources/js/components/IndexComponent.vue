@@ -1,6 +1,5 @@
 <template>
     <div>
-        <button @click="parentFunction">Нажми меня</button>
         <table class="table">
             <thead>
                 <tr>
@@ -77,7 +76,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref, defineExpose } from "vue";
+import { ref } from "vue";
 
 let people = ref([]);
 getPeople();
@@ -118,28 +117,4 @@ function deletePerson(id) {
 function isEdit(id) {
     return editPersonId.value === id;
 }
-
-function indexLog() {
-    console.log("это индекс лог");
-}
-
-let number = ref(8);
-
-defineExpose({
-    indexLog,
-    number,
-});
-
-const props = defineProps({
-    parentFunction: {
-        type: Function,
-        required: true,
-    },
-    parentVar: {
-        type: Number,
-        required: true,
-    },
-});
-
-console.log(props.parentVar);
 </script>
