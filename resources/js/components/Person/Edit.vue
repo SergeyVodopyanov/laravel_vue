@@ -56,7 +56,10 @@ function updatePerson() {
             age: age.value,
         })
         .then((res) => {
-            router.push({ name: "person.show" });
+            router.push({
+                name: "person.show",
+                params: { id: route.params.id },
+            });
         });
 }
 </script>
