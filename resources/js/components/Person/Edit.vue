@@ -1,3 +1,3 @@
 <template>
-    <div>TAG</div>
+    <div>Edit</div>
 </template>

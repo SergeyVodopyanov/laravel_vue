@@ -4,12 +4,9 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
-            path: "/posts",
-            component: () => import("./components/PostComponent.vue"),
-        },
-        {
-            path: "/tags",
-            component: () => import("./components/TagComponent.vue"),
+            path: "/people",
+            component: () => import("./components/Person/Index.vue"),
+            name: "person.index",
         },
     ],
 });
