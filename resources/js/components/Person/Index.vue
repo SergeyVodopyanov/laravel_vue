@@ -56,12 +56,12 @@ getPeople();
 
 async function getPeople() {
     axios.get("/api/people").then((res) => {
-        people.value = res.data;
+        people.value = res.data.data;
     });
 }
 
 function deletePerson(id) {
-    axios.delete("/api/people/" + id).then((res) => {
+    axios.delete(`/api/people/${id}`).then((res) => {
         getPeople();
     });
 }

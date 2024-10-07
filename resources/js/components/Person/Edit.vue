@@ -43,15 +43,15 @@ onMounted(() => {
 });
 
 function getPerson() {
-    axios.get("/api/people/" + route.params.id).then((res) => {
-        name.value = res.data.name;
-        age.value = res.data.age;
+    axios.get(`/api/people/${route.params.id}`).then((res) => {
+        name.value = res.data.data.name;
+        age.value = res.data.data.age;
     });
 }
 
 function updatePerson() {
     axios
-        .patch("/api/people/" + route.params.id, {
+        .patch(`/api/people/${route.params.id}`, {
             name: name.value,
             age: age.value,
         })

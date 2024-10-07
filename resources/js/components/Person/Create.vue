@@ -18,6 +18,7 @@
         </div>
         <div class="mb-3">
             <input
+                :disabled="isDisabled"
                 @click.prevent="store"
                 type="submit"
                 value="Add"
@@ -29,11 +30,23 @@
 
 <script setup>
 import router from "../../router";
-let name = null;
-let age = null;
+import axios from "axios";
+import { computed } from "vue";
+import { ref } from "vue";
+
+let name = ref(null);
+let age = ref(null);
 function store() {
-    axios.post("/api/people", { name: name, age: age }).then((res) => {
-        router.push({ name: "person.index" });
-    });
+    axios
+        .post("/api/people", { name: name.value, age: age.value })
+        .then((res) => {
+            router.push({ name: "person.index" });
+        });
 }
+
+const isDisabled = computed(() => {
+    return !name.value || !age.value;
+});
+
+console.log(isDisabled);
 </script>

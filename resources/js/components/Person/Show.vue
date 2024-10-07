@@ -26,8 +26,8 @@ let person = ref({});
 getPerson();
 
 function getPerson() {
-    axios.get("/api/people/" + route.params.id).then((res) => {
-        person.value = res.data;
+    axios.get(`/api/people/${route.params.id}`).then((res) => {
+        person.value = res.data.data;
     });
 }
 </script>
